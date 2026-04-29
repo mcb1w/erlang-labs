@@ -1,0 +1,39 @@
+mcb1w@MacBook-Pro-Misa iotserv % rebar3 shell
+===> Verifying dependencies...
+===> Analyzing applications...
+===> Compiling iotserv
+Erlang/OTP 28 [erts-16.3] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit] [dtrace]
+
+Eshell V16.3 (press Ctrl+G to abort, type help(). for help)
+===> Booted iotserv
+1> application:start(iotserv).
+{error,{already_started,iotserv}}
+2> whereis(iotserv).
+<0.188.0>
+3> iotserv:add({device,1,"sensor1","room1",23.5,[{mem_load,57}]}).
+ok
+4> iotserv:lookup(1).
+{device,1,"sensor1","room1",23.5,[{mem_load,57}]}
+5> iotserv:delete(1).
+ok
+6> iotserv:lookup(1).
+undefined
+7> iotserv:add({device,1,"sensor1","room1",23.5,[{mem_load,57}]}).
+ok
+8> iotserv:change(1,{device,1,"sensorX","room2",30.0,[{cpu,99}]}).
+ok
+9> iotserv:lookup(1).
+{device,1,"sensorX","room2",30.0,[{cpu,99}]}
+10> q().
+ok
+11> q().%                                                                
+mcb1w@MacBook-Pro-Misa iotserv % rebar3 shell
+===> Verifying dependencies...
+===> Analyzing applications...
+===> Compiling iotserv
+Erlang/OTP 28 [erts-16.3] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit] [dtrace]
+
+Eshell V16.3 (press Ctrl+G to abort, type help(). for help)
+===> Booted iotserv
+1> iotserv:lookup(1).
+{device,1,"sensorX","room2",30.0,[{cpu,99}]}
