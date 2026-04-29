@@ -1,0 +1,10 @@
+{application,iotserv,
+             [{description,"An OTP application"},
+              {vsn,"0.1.0"},
+              {registered,[]},
+              {mod,{iotserv_app,[]}},
+              {applications,[kernel,stdlib]},
+              {env,[]},
+              {modules,[iotserv,iotserv_app,iotserv_db,iotserv_sup]},
+              {licenses,["Apache-2.0"]},
+              {links,[]}]}.
