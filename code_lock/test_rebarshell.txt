@@ -1,0 +1,68 @@
+mcb1w@MacBook-Pro-Misa code_lock % rebar3 shell
+===> Verifying dependencies...
+===> Analyzing applications...
+===> Compiling code_lock
+Erlang/OTP 28 [erts-16.3] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit] [dtrace]
+
+Locked
+===> Booted code_lock
+Eshell V16.3 (press Ctrl+G to abort, type help(). for help)
+1> code_lock:start_link([1,2,3], 0).
+{error,{already_started,<0.174.0>}}
+2> code_lock:button(1).
+ok
+3> code_lock:button(2).
+ok
+4> code_lock:button(3).
+Open
+ok
+5> code_lock:set_code([9,9,9]).
+ok
+6> code_lock:button(0).
+Locked
+ok
+7> code_lock:button(9).
+ok
+8> code_lock:button(9).
+ok
+9> code_lock:button(9).
+Open
+ok
+Locked
+10> code_lock:button(1).
+ok
+11> code_lock:button(1).
+ok
+12> code_lock:button(1).
+ok
+13> code_lock:button(2).
+ok
+14> code_lock:button(2).
+ok
+15> code_lock:button(2).
+ok
+16> sys:get_state(code_lock_3).
+{{locked,0},
+ #{code => "\t\t\t",length => 3,errors => 2,buttons => []}}
+17> timer:sleep(11000).
+Command is taking a long time, type Ctrl+G, then enter 'i' to interrupt
+ok
+18> sys:get_state(code_lock_3).
+{{locked,0},
+ #{code => "\t\t\t",length => 3,errors => 2,buttons => []}}
+19> code_lock:stop().
+Locked
+=SUPERVISOR REPORT==== 16-May-2026::10:34:31.130473 ===
+    supervisor: {local,code_lock_sup}
+    errorContext: child_terminated
+    reason: normal
+    offender: [{pid,<0.174.0>},
+               {id,code_lock},
+               {mfargs,{code_lock,start_link,[[1,2,3],0]}},
+               {restart_type,permanent},
+               {significant,false},
+               {shutdown,5000},
+               {child_type,worker}]
+
+ok
+20> 
